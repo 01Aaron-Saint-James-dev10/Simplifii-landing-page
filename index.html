@@ -774,21 +774,21 @@ section { padding: 100px 48px; }
 }
 
 .aaron-photo {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  background: var(--surface);
-  border: 2px solid var(--teal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 3px solid var(--teal);
   flex-shrink: 0;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: var(--text-faint);
-  text-align: center;
-  padding: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.aaron-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
 }
 
 .aaron-text blockquote {
@@ -1495,7 +1495,9 @@ footer {
   <h2 class="section-title">Built by a student<br>who nearly didn't make it.</h2>
 
   <div class="aaron-card">
-    <div class="aaron-photo">Photo<br>Aaron<br>Saint-James</div>
+   <div class="aaron-photo">
+  <img src="aaron-graduation.jpeg" alt="Aaron Saint-James at UNSW graduation ceremony, wearing cap and gown">
+</div>
     <div class="aaron-text">
       <blockquote>"I read that assessment brief four times. I still had no idea what I was supposed to do."</blockquote>
       
