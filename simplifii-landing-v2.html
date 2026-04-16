@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simplifii-β — Built for complex briefs. Not complex brains.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #07080d;
+  --surface: #0d0f18;
+  --card: #131624;
+  --border: #1e2540;
+  --teal: #00e5cc;
+  --teal-dim: rgba(0,229,204,0.08);
+  --amber: #ff9f43;
+  --amber-dim: rgba(255,159,67,0.08);
+  --purple: #c44eff;
+  --purple-dim: rgba(196,78,255,0.08);
+  --coral: #ff4f5e;
+  --coral-dim: rgba(255,79,94,0.08);
+  --mint: #a8e6cf;
+  --text: #eef0f8;
+  --text-dim: #8892b0;
+  --text-faint: #3d4a6a;
+  --mono: 'DM Mono', monospace;
+  --display: 'Bebas Neue', sans-serif;
+  --body: 'Atkinson Hyperlegible', sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* GRID TEXTURE */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,204,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,204,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrapper { position: relative; z-index: 1; }
+
+/* NAV */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(7,8,13,0.95);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.logo {
+  font-family: var(--display);
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: var(--teal);
+}
+
+.logo span { color: var(--text); font-size: 18px; vertical-align: super; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover { background: #00c4af; transform: translateY(-1px); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 48px;
+  position: relative;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 1px solid rgba(0,229,204,0.3);
+  padding: 6px 16px;
+  border-radius: 2px;
+  margin-bottom: 40px;
+  display: inline-block;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(60px, 10vw, 120px);
+  line-height: 0.95;
+  letter-spacing: 2px;
+  margin-bottom: 32px;
+}
+
+.hero h1 .line-teal { color: var(--teal); display: block; }
+.hero h1 .line-white { color: var(--text); display: block; }
+.hero h1 .line-dim { color: var(--text-dim); display: block; }
+
+.hero-sub {
+  font-size: 20px;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+}
+
+.hero-sub strong { color: var(--text); font-weight: 700; }
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: #00c4af; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,229,204,0.25); }
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-secondary:hover { border-color: var(--text-dim); color: var(--text); }
+
+.hero-note {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 1px;
+}
+
+/* SCROLL INDICATOR */
+.scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+
+.scroll-hint span {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.scroll-hint .arrow {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--text-faint), transparent);
+}
+
+/* SECTION COMMON */
+section { padding: 100px 48px; }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--teal);
+}
+
+.section-title {
+  font-family: var(--display);
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.section-sub {
+  font-size: 18px;
+  color: var(--text-dim);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* PAIN POINTS */
+.pain-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 64px;
+}
+
+.pain-card {
+  background: var(--card);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pain-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.pain-card:nth-child(1)::before { background: var(--coral); }
+.pain-card:nth-child(2)::before { background: var(--amber); }
+.pain-card:nth-child(3)::before { background: var(--purple); }
+
+.pain-number {
+  font-family: var(--display);
+  font-size: 80px;
+  line-height: 1;
+  opacity: 0.06;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.pain-icon {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.pain-card h3 {
+  font-family: var(--display);
+  font-size: 28px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+.pain-card p {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.pain-strikethrough {
+  text-decoration: line-through;
+  color: var(--coral);
+  text-decoration-color: var(--coral);
+}
+
+.pain-replace {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+/* WHAT IS IT */
+.what-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 64px;
+}
+
+.what-text p {
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.what-text strong { color: var(--text); }
+
+.what-comparison {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.comparison-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.comp-col {
+  padding: 16px 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.comp-col.bad { background: rgba(255,79,94,0.1); color: var(--coral); }
+.comp-col.good { background: rgba(0,229,204,0.1); color: var(--teal); }
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--border);
+}
+
+.comp-item {
+  padding: 14px 24px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.comp-item.bad { color: var(--text-dim); border-right: 1px solid var(--border); }
+.comp-item.good { color: var(--text); }
+.comp-item.good::before { content: '✓ '; color: var(--teal); }
+
+/* TOOLS */
+.tools-section { background: var(--surface); }
+
+.tools-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.tool-card {
+  background: var(--card);
+  padding: 32px 28px;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+}
+
+.tool-card:hover {
+  background: #181d2e;
+  transform: translateY(-2px);
+}
+
+.tool-card::after {
+  content: '→';
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--text-faint);
+  transition: all 0.2s;
+}
+
+.tool-card:hover::after {
+  color: var(--teal);
+  right: 20px;
+}
+
+.tool-ticket {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.ticket-3 { background: rgba(196,78,255,0.15); color: var(--purple); border: 1px solid rgba(196,78,255,0.3); }
+.ticket-2 { background: rgba(255,159,67,0.15); color: var(--amber); border: 1px solid rgba(255,159,67,0.3); }
+.ticket-1 { background: rgba(0,229,204,0.15); color: var(--teal); border: 1px solid rgba(0,229,204,0.3); }
+
+.tool-name {
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.tool-problem {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ADJUNCT SECTION */
+.adjunct-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.adjunct-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 64px;
+  font-size: 16px;
+}
+
+.adjunct-table th {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding: 12px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.adjunct-table td {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.adjunct-table tr:last-child td { border-bottom: none; }
+
+.support-type {
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.support-icon { font-size: 20px; }
+
+.adjunct-table td:nth-child(2) { color: var(--text-dim); }
+.adjunct-table td:nth-child(3) { color: var(--text-dim); }
+
+.simplifii-cell {
+  color: var(--teal) !important;
+  font-weight: 700;
+}
+
+.status-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.status-replace { background: rgba(0,229,204,0.1); color: var(--teal); border: 1px solid rgba(0,229,204,0.2); }
+.status-adjunct { background: rgba(255,159,67,0.1); color: var(--amber); border: 1px solid rgba(255,159,67,0.2); }
+.status-better { background: rgba(168,230,207,0.1); color: var(--mint); border: 1px solid rgba(168,230,207,0.2); }
+
+/* FOUR VERSIONS */
+.versions-section { background: var(--surface); }
+
+.versions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-top: 64px;
+}
+
+.version-card {
+  background: var(--card);
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.version-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.status-live { background: rgba(0,229,204,0.1); color: var(--teal); border: 1px solid rgba(0,229,204,0.3); }
+.status-soon { background: rgba(255,159,67,0.1); color: var(--amber); border: 1px solid rgba(255,159,67,0.3); }
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.dot-live { background: var(--teal); animation: pulse-teal 2s infinite; }
+.dot-soon { background: var(--amber); }
+
+@keyframes pulse-teal {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,229,204,0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(0,229,204,0); }
+}
+
+.version-letter {
+  font-family: var(--display);
+  font-size: 100px;
+  line-height: 1;
+  opacity: 0.04;
+  position: absolute;
+  top: 16px;
+  right: 24px;
+}
+
+.version-card:nth-child(1) .version-letter { color: var(--teal); }
+.version-card:nth-child(2) .version-letter { color: var(--amber); }
+.version-card:nth-child(3) .version-letter { color: var(--purple); }
+.version-card:nth-child(4) .version-letter { color: var(--coral); }
+
+.version-name {
+  font-family: var(--display);
+  font-size: 36px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.version-card:nth-child(1) .version-name { color: var(--teal); }
+.version-card:nth-child(2) .version-name { color: var(--amber); }
+.version-card:nth-child(3) .version-name { color: var(--purple); }
+.version-card:nth-child(4) .version-name { color: var(--coral); }
+
+.version-tagline {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-faint);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.version-desc {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.version-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.version-features li {
+  font-size: 14px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.version-features li::before { content: '◎'; font-size: 10px; }
+.version-card:nth-child(1) .version-features li::before { content: '✓'; color: var(--teal); }
+
+.version-cta {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.version-card:nth-child(1) .version-cta { background: var(--teal); color: var(--bg); }
+.version-card:nth-child(1) .version-cta:hover { background: #00c4af; }
+.version-card:nth-child(2) .version-cta { border: 1px solid rgba(255,159,67,0.4); color: var(--amber); }
+.version-card:nth-child(2) .version-cta:hover { background: var(--amber-dim); }
+.version-card:nth-child(3) .version-cta { border: 1px solid rgba(196,78,255,0.4); color: var(--purple); }
+.version-card:nth-child(3) .version-cta:hover { background: var(--purple-dim); }
+.version-card:nth-child(4) .version-cta { border: 1px solid rgba(255,79,94,0.4); color: var(--coral); }
+.version-card:nth-child(4) .version-cta:hover { background: var(--coral-dim); }
+
+.versions-banner {
+  margin-top: 2px;
+  background: var(--card);
+  border-left: 4px solid var(--teal);
+  padding: 40px 48px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.versions-banner h3 {
+  font-family: var(--display);
+  font-size: 36px;
+  letter-spacing: 1px;
+  color: var(--teal);
+}
+
+.versions-banner p {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+/* AUDIENCE */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 64px;
+}
+
+.audience-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 28px 24px;
+  transition: all 0.2s;
+}
+
+.audience-card:hover {
+  border-color: var(--teal);
+  background: var(--teal-dim);
+}
+
+.audience-emoji { font-size: 28px; margin-bottom: 12px; display: block; }
+
+.audience-card h3 {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.audience-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.audience-note {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 20px;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.audience-note strong { color: var(--text); font-style: normal; }
+
+/* AARON */
+.aaron-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.aaron-card {
+  background: var(--card);
+  border-left: 4px solid var(--teal);
+  padding: 60px 64px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-top: 64px;
+}
+
+.aaron-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--text-faint);
+  text-align: center;
+  padding: 8px;
+}
+
+.aaron-text blockquote {
+  font-family: var(--display);
+  font-size: 36px;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  margin-bottom: 32px;
+  color: var(--text);
+}
+
+.aaron-text p {
+  font-size: 17px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.aaron-text p strong { color: var(--text); }
+
+.diagnosis-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0;
+}
+
+.diag-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  background: rgba(196,78,255,0.1);
+  border: 1px solid rgba(196,78,255,0.2);
+  color: var(--purple);
+  border-radius: 2px;
+}
+
+.aaron-creds {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.cred-item {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.cred-item strong { color: var(--teal); display: block; }
+
+.aaron-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.link-teal {
+  color: var(--teal);
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s;
+}
+
+.link-teal:hover { gap: 10px; }
+
+/* PRICING */
+.pricing-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.price-card {
+  background: var(--card);
+  padding: 32px 24px;
+  position: relative;
+}
+
+.price-card.featured {
+  background: #161d30;
+  border-top: 2px solid var(--teal);
+}
+
+.price-best {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.price-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.price-tickets {
+  font-family: var(--display);
+  font-size: 52px;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.price-ticket-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.price-aud {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.price-per {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-bottom: 24px;
+}
+
+.price-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.price-features li {
+  font-size: 14px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price-features li::before { content: '✓'; color: var(--teal); }
+
+.price-btn {
+  display: block;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.price-card.featured .price-btn { background: var(--teal); color: var(--bg); }
+.price-card:not(.featured) .price-btn { border: 1px solid var(--border); color: var(--text-dim); }
+.price-card:not(.featured) .price-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+.hardship-note {
+  margin-top: 40px;
+  padding: 24px 32px;
+  background: var(--card);
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.hardship-note p { font-size: 16px; color: var(--text-dim); }
+.hardship-note a { color: var(--teal); text-decoration: none; }
+.hardship-note strong { color: var(--text); }
+
+/* CTA FINAL */
+.final-cta {
+  text-align: center;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.final-cta h2 {
+  font-family: var(--display);
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 1;
+  letter-spacing: 2px;
+  margin-bottom: 32px;
+}
+
+.final-cta h2 .accent { color: var(--teal); }
+
+.final-cta p {
+  font-size: 20px;
+  color: var(--text-dim);
+  max-width: 500px;
+  margin: 0 auto 48px;
+}
+
+/* FOOTER */
+footer {
+  padding: 60px 48px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+}
+
+.footer-brand .logo { margin-bottom: 16px; display: block; }
+
+.footer-brand p {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 300px;
+  margin-bottom: 16px;
+}
+
+.footer-brand .legal {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+.footer-col h4 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 20px;
+}
+
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+.footer-col a {
+  font-size: 15px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--teal); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  section { padding: 60px 24px; }
+  .hero { padding: 60px 24px; }
+  .pain-grid { grid-template-columns: 1fr; }
+  .what-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .versions-grid { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr 1fr; }
+  .aaron-card { grid-template-columns: 1fr; gap: 32px; padding: 40px 32px; }
+  .pricing-intro { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; }
+  .versions-banner { grid-template-columns: 1fr; padding: 32px 24px; }
+  .adjunct-table { font-size: 14px; }
+  .adjunct-table th, .adjunct-table td { padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Simplifii<span>-β</span></div>
+  <ul class="nav-links">
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#versions">Versions</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://udl-magic.emergent.host" class="nav-cta" target="_blank">Try Beta Free →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Neuroinclusive · UDL 3.0 · AI-Powered · Built by a student, for students</div>
+  <h1>
+    <span class="line-teal">Built for complex briefs.</span>
+    <span class="line-white">Not complex</span>
+    <span class="line-dim">brains.</span>
+  </h1>
+  <p class="hero-sub">
+    9 AI-powered tools that <strong>decode assessment briefs</strong>, 
+    translate rubrics, plan your semester, and finally tell you 
+    what your lecturers actually want. 
+    <strong>Designed for every student the system forgot.</strong>
+  </p>
+  <div class="hero-ctas">
+    <a href="https://udl-magic.emergent.host" class="btn-primary" target="_blank">Try Simplifii Beta Free →</a>
+    <a href="#tools" class="btn-secondary">See all 9 tools ↓</a>
+  </div>
+  <p class="hero-note">No credit card. No judgment. 5 free tickets on signup. Tickets never expire.</p>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain-section">
+  <div class="section-label">The problem</div>
+  <h2 class="section-title">University wasn't built<br>for your brain.</h2>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-number">01</div>
+      <span class="pain-icon">📄</span>
+      <h3>You've read it<br>four times.</h3>
+      <p>
+        Assessment briefs are written by academics — for academics. 
+        Full of <span class="pain-strikethrough">sophisticated integration of theoretical frameworks</span> 
+        and zero explanation of what that actually means.
+        <br><br>
+        <span class="pain-replace">Simplifii translates it into plain language in under 2 minutes.</span>
+      </p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-number">02</div>
+      <span class="pain-icon">🎯</span>
+      <h3>You don't know what<br>HD looks like.</h3>
+      <p>
+        Rubrics that describe grades in academic language 
+        that requires a PhD to decode. 
+        <span class="pain-strikethrough">Demonstrates comprehensive synthesis of relevant literature.</span>
+        <br><br>
+        <span class="pain-replace">Simplifii breaks every criterion into exactly what earns every mark.</span>
+      </p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-number">03</div>
+      <span class="pain-icon">📝</span>
+      <h3>Blank page.<br>Zero words.</h3>
+      <p>
+        You know the deadline. You know you need to start. 
+        <span class="pain-strikethrough">You cannot make yourself start.</span> 
+        That's not laziness. That's a system that never gave you the scaffolding.
+        <br><br>
+        <span class="pain-replace">Simplifii builds the scaffold before you write a single word.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS IT -->
+<section id="about-tool">
+  <div class="section-label">What Simplifii is</div>
+  <div class="what-grid">
+    <div class="what-text">
+      <h2 class="section-title">Not a cheat.<br>A translator.</h2>
+      <p>
+        Simplifii does not write your essays. It does not complete your assignments. 
+        It does not generate submissions.
+      </p>
+      <p>
+        It does what every university <strong>should</strong> be doing but doesn't: 
+        explains what is being asked in plain language, maps out exactly how to approach it, 
+        and gives you the scaffolding to do your own best work.
+      </p>
+      <p>
+        Using Simplifii is no different from visiting a learning support centre or 
+        asking a tutor to explain an assessment brief. 
+        Except Simplifii is <strong>available at 2am</strong>, never makes you feel stupid, 
+        and was designed specifically for neurodivergent students.
+      </p>
+    </div>
+    <div class="what-comparison">
+      <div class="comparison-header">
+        <div class="comp-col bad">Without Simplifii</div>
+        <div class="comp-col good">With Simplifii</div>
+      </div>
+      <div class="comparison-row">
+        <div class="comp-item bad">Read brief 4× still confused</div>
+        <div class="comp-item good">Plain language in 2 minutes</div>
+      </div>
+      <div class="comparison-row">
+        <div class="comp-item bad">Don't know what HD means</div>
+        <div class="comp-item good">Exact criteria per mark band</div>
+      </div>
+      <div class="comparison-row">
+        <div class="comp-item bad">Blank page, no structure</div>
+        <div class="comp-item good">Section-by-section blueprint</div>
+      </div>
+      <div class="comparison-row">
+        <div class="comp-item bad">Surprise deadlines</div>
+        <div class="comp-item good">Week-by-week semester plan</div>
+      </div>
+      <div class="comparison-row">
+        <div class="comp-item bad">Submit and hope for the best</div>
+        <div class="comp-item good">Rubric-aligned feedback first</div>
+      </div>
+      <div class="comparison-row">
+        <div class="comp-item bad">Support office: 9am-5pm only</div>
+        <div class="comp-item good">Available 24/7 no waitlist</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section" id="tools">
+  <div class="tools-intro">
+    <div>
+      <div class="section-label">The tools</div>
+      <h2 class="section-title">9 tools.<br>One pipeline.</h2>
+    </div>
+    <p class="section-sub">
+      Each tool is a step in the assessment journey. 
+      Use one or use all nine — they connect and pass 
+      information between each other automatically.
+    </p>
+  </div>
+  <div class="tools-grid">
+
+    <a href="https://udl-magic.emergent.host/brief-simplifier" class="tool-card" target="_blank">
+      <div class="tool-ticket ticket-3">3 tickets</div>
+      <div class="tool-name">Brief Simplifier</div>
+      <p class="tool-problem">Can't figure out what your lecturer actually wants? Upload your brief → plain language plan → week-by-week tasks → every deadline mapped.</p>
+    </a>
+
+    <a href="https://udl-magic.emergent.host/scaffolder" class="tool-card" target="_blank">
+      <div class="tool-ticket ticket-3">3 tickets</div>
+      <div class="tool-name">Assessment Scaffolder</div>
+      <p class="tool-problem">Staring at a blank page? Get a complete section-by-section blueprint with word counts, starter sentences, and Bloom's Taxonomy guidance.</p>
+    </a>
+
+    <a href="https://udl-magic.emergent.host/course-planner" class="tool-card" target="_blank">
+      <div class="tool-ticket ticket-3">3 tickets</div>
+      <div class="tool-name">Course Planner</div>
+      <p class="tool-problem">Assessments across three courses with no idea what to tackle first? Upload all your course docs → one clear semester-wide plan.</p>
+    </a>
+
+    <a href="https://udl-magic.emergent.host/rubric-simplifier" class="tool-card" target="_blank">
+      <div class="tool-ticket ticket-2">2 tickets</div>
+      <div class="tool-name">Rubric Simplifier</div>
+      <p class="tool-problem">Don't know what a Distinction actually looks like? Point-by-point breakdown of exactly what earns every mark on your rubric.</p>
+    </a>
+
+    <a href="https://udl-magic.emergent.host/essay-scorer" class="tool-card" target="_blank">
+      <div class="tool-ticket ticket-2">2 tickets</div>
+      <div class="tool-name">Essay Scorer</div>
+      <p class="tool-problem">Written a draft but not sure it's good enough? Rubric-aligned feedback on your actual writing before you submit.</p>
+    </a>
+
+    <a href="https://udl-magic.emergent.host/humaniser" class="tool-card" target="_blank">
+      <div class="tool-ticket ticket-2">2 tickets</div>
+      <div class="tool-name">Humaniser</div>
+      <p class="tool-problem">Writing feels stiff or keeps getting flagged? Restore your authentic voice — every idea intact, before/after AI risk score included.</p>
+    </a>
+
+    <a href="https://udl-magic.emergent.host/decoder" class="tool-card" target="_blank">
+      <div class="tool-ticket ticket-2">2 tickets</div>
+      <div class="tool-name">Hidden Curriculum Decoder</div>
+      <p class="tool-problem">Feel like everyone else knows something you were never told? Decode the unwritten rules your markers expect but never explain.</p>
+    </a>
+
+    <a href="https://udl-magic.emergent.host/visualiser" class="tool-card" target="_blank">
+      <div class="tool-ticket ticket-1">1 ticket</div>
+      <div class="tool-name">Concept Visualiser</div>
+      <p class="tool-problem">Read the textbook three times and still don't get it? Any concept explained simply then accurately using the Feynman Technique.</p>
+    </a>
+
+    <a href="https://udl-magic.emergent.host/planner" class="tool-card" target="_blank">
+      <div class="tool-ticket ticket-1">1 ticket</div>
+      <div class="tool-name">Executive Function Planner</div>
+      <p class="tool-problem">Know what you need to do but can't make yourself start? Timed focus sessions with a built-in Pomodoro timer. ADHD Sprint mode included.</p>
+    </a>
+
+  </div>
+</section>
+
+<!-- ADJUNCT/REPLACEMENT TABLE -->
+<section class="adjunct-section">
+  <div class="section-label">What Simplifii replaces or supports</div>
+  <h2 class="section-title">Your 24/7<br>support system.</h2>
+  <p class="section-sub">Some things Simplifii replaces entirely. Some things it makes better. All of it is available without an appointment.</p>
+
+  <table class="adjunct-table">
+    <thead>
+      <tr>
+        <th>Traditional support</th>
+        <th>The problem</th>
+        <th>Simplifii does</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="support-type"><span class="support-icon">🏫</span> Learning Support Centre</div></td>
+        <td>9-5 only. Appointment waitlist. Can't help at 2am before submission.</td>
+        <td class="simplifii-cell">24/7 assessment clarity — no appointment, no waitlist, no judgment.</td>
+        <td><span class="status-badge status-better">Better + always on</span></td>
+      </tr>
+      <tr>
+        <td><div class="support-type"><span class="support-icon">👩‍🏫</span> Private Tutor</div></td>
+        <td>$80-120/hr. Not everyone can afford this. Huge SES disadvantage.</td>
+        <td class="simplifii-cell">Same outcome — understanding what to do and how to do it — for the price of a coffee.</td>
+        <td><span class="status-badge status-replace">Replaces</span></td>
+      </tr>
+      <tr>
+        <td><div class="support-type"><span class="support-icon">♿</span> Disability Support Unit</div></td>
+        <td>Handles accommodations, not day-to-day academic confusion. Thin resources, long wait times.</td>
+        <td class="simplifii-cell">Adjunct daily support. Simplifii handles the academic language barrier — DSU handles formal accommodations.</td>
+        <td><span class="status-badge status-adjunct">Adjunct</span></td>
+      </tr>
+      <tr>
+        <td><div class="support-type"><span class="support-icon">📚</span> Study Skills Workshops</div></td>
+        <td>Generic. Not personalised to your specific assessment, course, or university.</td>
+        <td class="simplifii-cell">Personalised to your exact brief, your exact rubric, your exact university's format.</td>
+        <td><span class="status-badge status-replace">Replaces</span></td>
+      </tr>
+      <tr>
+        <td><div class="support-type"><span class="support-icon">🤖</span> ChatGPT / Generic AI</div></td>
+        <td>Generates essays. High hallucination risk. Not designed for neuroinclusion. Academic integrity risk.</td>
+        <td class="simplifii-cell">Explains and scaffolds your own thinking — never writes for you. Safe, ethical, UDL 3.0 aligned.</td>
+        <td><span class="status-badge status-better">Safer alternative</span></td>
+      </tr>
+      <tr>
+        <td><div class="support-type"><span class="support-icon">📖</span> Course Coordinator</div></td>
+        <td>Intimidating to approach. Office hours limited. Power imbalance.</td>
+        <td class="simplifii-cell">Pre-clarifies what you need to ask — so when you do approach them, you sound prepared.</td>
+        <td><span class="status-badge status-adjunct">Prepares you for</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FOUR VERSIONS -->
+<section class="versions-section" id="versions">
+  <div class="section-label">The experiment</div>
+  <h2 class="section-title">Four builds.<br>One mission.</h2>
+  <p class="section-sub">We're running four parallel versions of Simplifii to find what genuinely works best for neurodivergent students. You're part of the research.</p>
+
+  <div class="versions-grid">
+
+    <div class="version-card">
+      <div class="version-letter">β</div>
+      <div class="version-status status-live"><div class="status-dot dot-live"></div>Live now</div>
+      <div class="version-name">Simplifii Beta</div>
+      <div class="version-tagline">The complete build — live now</div>
+      <p class="version-desc">Nine tools, full UDL 3.0 implementation, tool chain connecting every step. The most complete build with everything we know how to make.</p>
+      <ul class="version-features">
+        <li>9 AI-powered tools</li>
+        <li>PDF auto-detection</li>
+        <li>Semester-wide course planner</li>
+        <li>Study Buddy AI coach</li>
+        <li>Analytics and outcome tracking</li>
+        <li>10 language translation</li>
+      </ul>
+      <a href="https://udl-magic.emergent.host" class="version-cta" target="_blank">Try Beta Free →</a>
+    </div>
+
+    <div class="version-card">
+      <div class="version-letter">α</div>
+      <div class="version-status status-soon"><div class="status-dot dot-soon"></div>Original build</div>
+      <div class="version-name">Simplifii Alpha</div>
+      <div class="version-tagline">The original — stripped back</div>
+      <p class="version-desc">Stripped back to the three core tools. Faster, simpler, lower cognitive load. Testing whether less is genuinely more for neurodivergent students.</p>
+      <ul class="version-features">
+        <li>Brief Simplifier</li>
+        <li>Rubric Simplifier</li>
+        <li>Assessment Scaffolder</li>
+        <li>One-click outputs</li>
+        <li>Mobile-first design</li>
+        <li>Minimal interface</li>
+      </ul>
+      <a href="mailto:aaron@simplifii.com.au?subject=Simplifii Alpha Interest" class="version-cta">Express interest →</a>
+    </div>
+
+    <div class="version-card">
+      <div class="version-letter">γ</div>
+      <div class="version-status status-soon"><div class="status-dot dot-soon"></div>Coming soon</div>
+      <div class="version-name">Simplifii Gamma</div>
+      <div class="version-tagline">Community and collaboration</div>
+      <p class="version-desc">A social learning version. Students share anonymised simplified briefs, vote on outputs, build a collective knowledge base. Testing whether peer learning compounds the neuroinclusive effect.</p>
+      <ul class="version-features">
+        <li>Shared brief library</li>
+        <li>Student voting on outputs</li>
+        <li>Study group tools</li>
+        <li>Anonymous contribution</li>
+        <li>University-specific feeds</li>
+        <li>Peer support integration</li>
+      </ul>
+      <a href="mailto:aaron@simplifii.com.au?subject=Simplifii Gamma Waitlist" class="version-cta">Join waitlist →</a>
+    </div>
+
+    <div class="version-card">
+      <div class="version-letter">δ</div>
+      <div class="version-status status-soon"><div class="status-dot dot-soon"></div>Coming soon</div>
+      <div class="version-name">Simplifii Delta</div>
+      <div class="version-tagline">Institutional and enterprise</div>
+      <p class="version-desc">Built for universities, not students. Dashboard for accessibility offices and learning support teams to deliver UDL-compliant assessment design at scale.</p>
+      <ul class="version-features">
+        <li>University dashboard</li>
+        <li>Student outcome tracking</li>
+        <li>UDL compliance reporting</li>
+        <li>Academic staff tools</li>
+        <li>LMS integration ready</li>
+        <li>Institutional data exports</li>
+      </ul>
+      <a href="mailto:aaron@simplifii.com.au?subject=Simplifii Delta — University Partnership" class="version-cta">Express interest →</a>
+    </div>
+
+  </div>
+
+  <div class="versions-banner">
+    <h3>Why four versions?</h3>
+    <p>
+      Neuroinclusive design is not one-size-fits-all. Different students need different things. 
+      By building four parallel versions and gathering real outcome data, we're not guessing 
+      what works — we're measuring it. The data from all four builds feeds into 
+      <strong style="color: var(--teal)">Simplifii 2.0</strong> — the definitive neuroinclusive 
+      assessment platform. Every student who uses any version is contributing to research that 
+      will change how universities support diverse learners.
+    </p>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section>
+  <div class="section-label">Who it's for</div>
+  <h2 class="section-title">Simplifii was built for students<br>the system forgot.</h2>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <span class="audience-emoji">🧠</span>
+      <h3>Neurodivergent students</h3>
+      <p>ADHD, dyslexia, autism, anxiety, C-PTSD, chronic fatigue — built with you in mind, from someone who shares your diagnosis.</p>
+    </div>
+    <div class="audience-card">
+      <span class="audience-emoji">🎓</span>
+      <h3>First-generation students</h3>
+      <p>No family guide to university. No dinner-table academic prep. Simplifii is the guide you were never given.</p>
+    </div>
+    <div class="audience-card">
+      <span class="audience-emoji">🌏</span>
+      <h3>International students</h3>
+      <p>Navigating a new academic culture in a second language. Outputs available in 10 languages. Zero judgment.</p>
+    </div>
+    <div class="audience-card">
+      <span class="audience-emoji">🔄</span>
+      <h3>Mature-age students</h3>
+      <p>Returning after years away. Academic writing feels foreign again. Simplifii meets you exactly where you are.</p>
+    </div>
+    <div class="audience-card">
+      <span class="audience-emoji">💰</span>
+      <h3>Low-SES students</h3>
+      <p>Never had access to private tutors. Simplifii gives you what the $80/hr tutor gives wealthy students — for the price of a coffee.</p>
+    </div>
+    <div class="audience-card">
+      <span class="audience-emoji">😤</span>
+      <h3>Every student</h3>
+      <p>Anyone who has ever read an assessment brief, rubric, or course outline and not known where to start.</p>
+    </div>
+  </div>
+  <p class="audience-note">
+    You don't need to identify as disabled or neurodivergent to use Simplifii.<br>
+    <strong>You just need to have ever felt lost.</strong>
+  </p>
+</section>
+
+<!-- AARON -->
+<section class="aaron-section" id="about">
+  <div class="section-label">Who built this</div>
+  <h2 class="section-title">Built by a student<br>who nearly didn't make it.</h2>
+
+  <div class="aaron-card">
+    <div class="aaron-photo">Photo<br>Aaron<br>Saint-James</div>
+    <div class="aaron-text">
+      <blockquote>"I read that assessment brief four times. I still had no idea what I was supposed to do."</blockquote>
+      
+      <p>That's not a me problem. That's a system problem.</p>
+      
+      <p>I'm <strong>Aaron Saint-James</strong>. I have:</p>
+      
+      <div class="diagnosis-tags">
+        <span class="diag-tag">ADHD</span>
+        <span class="diag-tag">Dyslexia</span>
+        <span class="diag-tag">C-PTSD</span>
+        <span class="diag-tag">Chronic Anxiety</span>
+        <span class="diag-tag">Depression</span>
+        <span class="diag-tag">Chronic Fatigue</span>
+      </div>
+      
+      <p>I nearly didn't finish my degree. Not because I wasn't capable. Because the system wasn't built for a brain like mine. University support — at its best — was limited. At its worst, invisible.</p>
+      
+      <p>I'm now completing my <strong>Master of Research</strong> and going into a <strong>PhD next year</strong>. I never thought that was possible.</p>
+      
+      <p>Simplifii is what I wish had existed when I was sitting in my first year not knowing where to start. I never want another student to feel the way I did. I never want another student to fail a course or abandon a degree because the system failed to meet them where they are. <strong>That is my life's mission.</strong></p>
+
+      <div class="aaron-creds">
+        <div class="cred-item"><strong>MRes Candidate</strong>PhD Candidate 2027</div>
+        <div class="cred-item"><strong>Co-founder</strong>Diversified Project at UNSW</div>
+        <div class="cred-item"><strong>Member</strong>Remarkable Accelerator</div>
+        <div class="cred-item"><strong>Patent</strong>Provisional 2026902550</div>
+      </div>
+
+      <div class="aaron-links">
+        <a href="https://udl-magic.emergent.host/about" class="link-teal" target="_blank">Full story on Simplifii →</a>
+        <a href="https://aaron-saint-james.com.au" class="link-teal" target="_blank">Personal website →</a>
+        <a href="https://www.unsw.edu.au/edi/diversity-inclusion/disability-inclusion/disability-innovation-institute/diversified" class="link-teal" target="_blank">Diversified Project at UNSW →</a>
+        <a href="mailto:aaron@simplifii.com.au" class="link-teal">Email Aaron directly →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-intro">
+    <div>
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Student-first pricing.<br>Always.</h2>
+    </div>
+    <div>
+      <p class="section-sub">Tickets never expire. No subscription. No monthly fee. Buy what you need, when you need it. Start with 5 free tickets — no credit card required.</p>
+    </div>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-name">Starter</div>
+      <div class="price-tickets">10</div>
+      <div class="price-ticket-label">tickets</div>
+      <div class="price-aud">$14.99 AUD</div>
+      <div class="price-per">$1.50 per ticket</div>
+      <ul class="price-features">
+        <li>10 tool uses</li>
+        <li>All 9 tools</li>
+        <li>Tickets never expire</li>
+        <li>Study Buddy AI coach</li>
+      </ul>
+      <a href="https://udl-magic.emergent.host/credits" class="price-btn" target="_blank">Get Starter →</a>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-best">Best value</div>
+      <div class="price-name">Standard</div>
+      <div class="price-tickets">30</div>
+      <div class="price-ticket-label">tickets · save 13%</div>
+      <div class="price-aud">$38.99 AUD</div>
+      <div class="price-per">$1.30 per ticket</div>
+      <ul class="price-features">
+        <li>30 tool uses</li>
+        <li>All 9 tools</li>
+        <li>Tickets never expire</li>
+        <li>Study Buddy AI coach</li>
+      </ul>
+      <a href="https://udl-magic.emergent.host/credits" class="price-btn" target="_blank">Get Standard →</a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-name">Semester</div>
+      <div class="price-tickets">75</div>
+      <div class="price-ticket-label">tickets · save 20%</div>
+      <div class="price-aud">$89.99 AUD</div>
+      <div class="price-per">$1.20 per ticket</div>
+      <ul class="price-features">
+        <li>75 tool uses</li>
+        <li>All 9 tools</li>
+        <li>Tickets never expire</li>
+        <li>Study Buddy AI coach</li>
+      </ul>
+      <a href="https://udl-magic.emergent.host/credits" class="price-btn" target="_blank">Get Semester →</a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-name">Power</div>
+      <div class="price-tickets">200</div>
+      <div class="price-ticket-label">tickets · save 27%</div>
+      <div class="price-aud">$219.99 AUD</div>
+      <div class="price-per">$1.10 per ticket</div>
+      <ul class="price-features">
+        <li>200 tool uses</li>
+        <li>All 9 tools</li>
+        <li>Tickets never expire</li>
+        <li>Study Buddy AI coach</li>
+      </ul>
+      <a href="https://udl-magic.emergent.host/credits" class="price-btn" target="_blank">Get Power →</a>
+    </div>
+  </div>
+
+  <div class="hardship-note">
+    <p>
+      <strong>Can't afford tickets right now?</strong> Simplifii has a hardship access programme. 
+      We will never turn away a student who genuinely needs support.
+      <br>Email <a href="mailto:aaron@simplifii.com.au?subject=Access Support Request">aaron@simplifii.com.au</a> with subject "Access Support Request" — no proof required.
+    </p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>
+    <span class="accent">Stop guessing.</span><br>
+    Start simplifying.
+  </h2>
+  <p>5 free tickets. No credit card. No judgment. Just clarity.</p>
+  <a href="https://udl-magic.emergent.host" class="btn-primary" target="_blank" style="font-size: 16px; padding: 20px 48px;">
+    Try Simplifii Free →
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="logo">Simplifii<span>-β</span></span>
+    <p>Built for complex briefs. Not complex brains. A neuroinclusive AI-powered study support platform for every student the system forgot.</p>
+    <p class="legal">© 2026 Simplifii Pty Ltd · Provisional Patent 2026902550 · ABN 22 493 974 838</p>
+  </div>
+  <div class="footer-col">
+    <h4>Platform</h4>
+    <ul>
+      <li><a href="https://udl-magic.emergent.host" target="_blank">Simplifii Beta (Live)</a></li>
+      <li><a href="https://udl-magic.emergent.host/about" target="_blank">About</a></li>
+      <li><a href="https://udl-magic.emergent.host/faq" target="_blank">Help Centre</a></li>
+      <li><a href="https://udl-magic.emergent.host/credits" target="_blank">Pricing</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Connect</h4>
+    <ul>
+      <li><a href="mailto:aaron@simplifii.com.au">aaron@simplifii.com.au</a></li>
+      <li><a href="https://aaron-saint-james.com.au" target="_blank">aaron-saint-james.com.au</a></li>
+      <li><a href="https://www.unsw.edu.au/edi/diversity-inclusion/disability-inclusion/disability-innovation-institute/diversified" target="_blank">Diversified Project UNSW</a></li>
+      <li><a href="mailto:aaron@simplifii.com.au?subject=University Partnership">University partnerships</a></li>
+    </ul>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
